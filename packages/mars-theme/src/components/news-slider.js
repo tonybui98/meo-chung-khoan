@@ -47,7 +47,7 @@ const Slider = () => {
       <Carousel responsive={responsive}>
         {
           sliderContent.map((data) => {
-            const slug = data.slug;
+            const slug = data.link;
             return( 
               <div className="position-relative" key={data.id}>
                 <SliderThumbnail className="position-relative overflow-hidden border-radius-lg">
@@ -56,7 +56,7 @@ const Slider = () => {
                <SliderContent>
                   <h3>{data.title.rendered}</h3>
                   <p>{ReactHtmlParser(data.excerpt.rendered.slice(0, 180) + "...")}</p>
-                  <Link href={data.slug}>
+                  <Link link={slug}>
                       <Button className="text-white float-right" variant="contained"><i className="bi bi-arrow-right"></i> Xem thêm</Button>
                   </Link>
                </SliderContent>

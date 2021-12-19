@@ -3,6 +3,8 @@ import ReactHtmlParser from 'react-html-parser';
 import moment from 'moment';
 import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
+import Link from '../link';
+
 const NewsTemplates = (props) => {
   console.log(props);
   const hour = moment(props.data.date_gmt).locale('vi').startOf('hour').fromNow();
@@ -11,11 +13,17 @@ const NewsTemplates = (props) => {
     <Card className="p-3 mb-3 rounded-0" variant="outlined">
             <div className='d-flex gap-3'>
               <CardImage>
-                  <SliderImage className={"rounded"} src={props.data.featured_image_src} />
+                  <Link link={props.data.link}>
+                     <SliderImage className={"rounded"} src={props.data.featured_image_src} />
+                  </Link>
               </CardImage>
               <CardContent>
                 <NewMeta className="text-sm text-mute float-right"><i class="bi bi-calendar"></i> {hour}</NewMeta>
-                <CardHeading className="card-title">{props.data.title.rendered}</CardHeading>
+                <CardHeading className="card-title">
+                  <Link link={props.data.link}>
+                    {props.data.title.rendered}
+                  </Link>
+                  </CardHeading>
               </CardContent>
             </div>
             <div className="w-100">  

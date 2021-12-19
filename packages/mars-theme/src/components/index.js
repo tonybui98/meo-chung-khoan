@@ -22,6 +22,9 @@ import LoadingBar from 'react-top-loading-bar'
 import globalCss from "./index.css";
 import bootstrapStyle from "bootstrap/dist/css/bootstrap.min.css";
 
+// Footer 
+import Footer from "./footer";
+
 /**
  * Theme is the root React component of our theme. The one we will export
  * in roots.
@@ -80,6 +83,8 @@ const Theme = ({ state }) => {
           <PageError when={data.isError} />
         </Switch>
       </Main>
+
+      <Footer />
     </>
   );
 };
