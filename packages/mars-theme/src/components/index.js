@@ -6,7 +6,9 @@ import Post from "./post";
 import Loading from "./loading";
 import Title from "./title";
 import PageError from "./page-error";
-
+import bootstrapStyle from "bootstrap/dist/css/bootstrap.min.css";
+import globalCss from "./index.css";
+import Home from "./pages/home";
 /**
  * Theme is the root React component of our theme. The one we will export
  * in roots.
@@ -18,8 +20,9 @@ import PageError from "./page-error";
 const Theme = ({ state }) => {
   // Get information about the current URL.
   const data = state.source.get(state.router.link);
-
+  // console.log(process.env.REACT_APP_FRONTITY_API_LINK);
   return (
+    
     <>
       {/* Add some metatags to the <head> of the HTML. */}
       <Title />
@@ -30,8 +33,8 @@ const Theme = ({ state }) => {
 
       {/* Add some global styles for the whole site, like body or a's. 
       Not classes here because we use CSS-in-JS. Only global HTML tags. */}
-      <Global styles={globalStyles} />
-
+      <Global styles={globalCss} />
+      <Global styles={bootstrapStyle} />
       {/* Add the header of the site. */}
       <HeadContainer>
         <Header />
@@ -40,8 +43,9 @@ const Theme = ({ state }) => {
       {/* Add the main section. It renders a different component depending
       on the type of URL we are in. */}
       <Main>
-        <Switch>
+        <Switch> 
           <Loading when={data.isFetching} />
+          <Home when={state.router.link === '/'} />
           <List when={data.isArchive} />
           <Post when={data.isPostType} />
           <PageError when={data.isError} />
@@ -53,24 +57,11 @@ const Theme = ({ state }) => {
 
 export default connect(Theme);
 
-const globalStyles = css`
-  body {
-    margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-      "Droid Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  }
-  a,
-  a:visited {
-    color: inherit;
-    text-decoration: none;
-  }
-`;
-
 const HeadContainer = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
-  background-color: #1f38c5;
+  background-color: #ffffff;
 `;
 
 const Main = styled.div`
