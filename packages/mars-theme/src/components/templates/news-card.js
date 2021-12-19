@@ -1,18 +1,61 @@
 import { Global, connect, styled } from 'frontity';
-
-const NewsTemplates = () => {
+import ReactHtmlParser from 'react-html-parser';
+import moment from 'moment';
+import Button from '@mui/material/Button';
+import Card from '@mui/material/Card';
+const NewsTemplates = (props) => {
+  console.log(props);
+  const hour = moment(props.data.date_gmt).locale('vi').startOf('hour').fromNow();
   return(
     <>
-      <div className="card">
-        <img src="..." className="card-img-top" alt="..."/>
-              <div className="card-body">
-                <h5 className="card-title">Card title</h5>
-                <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <a href="#" className="btn btn-primary">Go somewhere</a>
-              </div>
-      </div>
+    <Card className="p-3 mb-3 rounded-0" variant="outlined">
+            <div className='d-flex gap-3'>
+              <CardImage>
+                  <SliderImage className={"rounded"} src={props.data.featured_image_src} />
+              </CardImage>
+              <CardContent>
+                <NewMeta className="text-sm text-mute float-right"><i class="bi bi-calendar"></i> {hour}</NewMeta>
+                <CardHeading className="card-title">{props.data.title.rendered}</CardHeading>
+              </CardContent>
+            </div>
+            <div className="w-100">  
+                <CardExcerpt className="card-text mb-0">{ReactHtmlParser(props.data.excerpt.rendered.slice(0, 80) + "...")}</CardExcerpt>
+            </div>
+    </Card>
     </>
   );
 }
 
 export default connect(NewsTemplates);
+const NewMeta = styled.span`
+  font-size: 8px;
+  background: #131722;
+  color: white;
+  padding: 4px 10px;
+  display: inline-block;
+  border-radius: 5px;
+`
+
+const CardExcerpt = styled.div`
+  font-size: 14px;
+  p{
+    margin: 0px;
+  }
+`;
+
+const CardImage = styled.div`
+  width: 30%;
+`;
+
+const CardContent = styled.div`
+  width: 70%;
+`;
+
+const SliderImage = styled.img`
+  width: 100%;
+`;
+
+const CardHeading = styled.h3`
+  font-size: 16px;
+  font-weight: bold;
+`;

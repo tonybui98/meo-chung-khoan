@@ -1,14 +1,27 @@
+import React , {useRef, useState, useEffect} from "react";
+
+// Import Frontity
 import { Global, css, connect, styled, Head } from "frontity";
 import Switch from "@frontity/components/switch";
+
+// Import các components
 import Header from "./header";
 import List from "./list";
 import Post from "./post";
 import Loading from "./loading";
 import Title from "./title";
 import PageError from "./page-error";
-import bootstrapStyle from "bootstrap/dist/css/bootstrap.min.css";
-import globalCss from "./index.css";
+
+
+// Import Các trang cần thiết
 import Home from "./pages/home";
+import Login from "./pages/login";
+
+// Loading Bar
+import LoadingBar from 'react-top-loading-bar'
+import globalCss from "./index.css";
+import bootstrapStyle from "bootstrap/dist/css/bootstrap.min.css";
+
 /**
  * Theme is the root React component of our theme. The one we will export
  * in roots.
@@ -18,11 +31,18 @@ import Home from "./pages/home";
  * @returns The top-level react component representing the theme.
  */
 const Theme = ({ state }) => {
+  console.log(state);
+  const [progress, setProgress] = useState(0);
+
   // Get information about the current URL.
   const data = state.source.get(state.router.link);
+
+  useEffect(() => {
+    setProgress(100);
+  }, [data])
+
   // console.log(process.env.REACT_APP_FRONTITY_API_LINK);
   return (
-    
     <>
       {/* Add some metatags to the <head> of the HTML. */}
       <Title />
@@ -36,16 +56,25 @@ const Theme = ({ state }) => {
       <Global styles={globalCss} />
       <Global styles={bootstrapStyle} />
       {/* Add the header of the site. */}
+
+      <LoadingBar
+        color='#f11946'
+        progress={progress}
+        when={() => {setProgress(100); console.log('loading')}}
+        onLoaderFinished={() => setProgress(0)}
+      />
+
       <HeadContainer>
         <Header />
       </HeadContainer>
 
       {/* Add the main section. It renders a different component depending
       on the type of URL we are in. */}
-      <Main>
+      <Main className="bg-light">
         <Switch> 
           <Loading when={data.isFetching} />
           <Home when={state.router.link === '/'} />
+          <Login when={state.router.link === '/dang-nhap/'} />
           <List when={data.isArchive} />
           <Post when={data.isPostType} />
           <PageError when={data.isError} />
@@ -65,11 +94,5 @@ const HeadContainer = styled.div`
 `;
 
 const Main = styled.div`
-  display: flex;
-  justify-content: center;
-  background-image: linear-gradient(
-    180deg,
-    rgba(66, 174, 228, 0.1),
-    rgba(66, 174, 228, 0)
-  );
+  display: block;
 `;

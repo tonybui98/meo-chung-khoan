@@ -5,7 +5,7 @@ import axios from "axios";
 
 const NewsList = () => {
    
-  const [postData, setPostData] = useState('');
+  const [postData, setPostData] = useState([]);
   
     const FetchPost = async () => {
       await axios.get('https://meochungkhoan.com/dashboard/wp-json/wp/v2/posts?per_page=3')
@@ -20,6 +20,9 @@ const NewsList = () => {
    
     return(
       <>
+        {
+           postData.map((data, index) => (<NewsTemplates key={index} data={data}/>))
+        }
       </>
     );
 

@@ -1,11 +1,27 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css");
 body {
   margin: 0;
-  font-family: 'Poppins',sans-serif !important;
+  font-family: 'Roboto', sans-serif; !important;
+  font-size: 14px;
+}
+.container, .container-lg, .container-md, .container-sm, .container-xl, .container-xxl {
+  max-width: 1180px !important;
 }
 a,
 a:visited {
   color: inherit;
   text-decoration: none;
+}
+
+.react-multiple-carousel__arrow--left::before {
+  content: "\f12c" !important;
+}
+
+.react-multiple-carousel__arrow--right::before {
+  content: "\f135" !important;
+}
+
+.react-multiple-carousel__arrow::before {
+  font-family: bootstrap-icons !important;
 }
