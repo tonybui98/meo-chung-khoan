@@ -8,8 +8,10 @@ const Footer = () => {
   const [footerData , setFooterData] = useState('');
   useEffect(() => {
       axios.get(DataUrl)
-      .then((res) => {console.log(res.data)}
+      .then((res) => {setFooterData(res.data.acf.footer)}
     )}, []);
+
+  console.log(footerData);  
   return(
     <>
       <div className="container">
