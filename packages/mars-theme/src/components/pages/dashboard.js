@@ -19,7 +19,7 @@ const Dashboard = () => {
           </div>
           <div className="col-12">
             <h3>Phân bổ theo nhóm ngành</h3>
-            <hr />
+            <hr /> 
           </div>
           <div className="col-12">
             <h3>Những cổ phiếu đề xuất trong danh mục của bạn</h3>
