@@ -25,7 +25,6 @@ import globalCss from "./index.css";
 import bootstrapStyle from "bootstrap/dist/css/bootstrap.min.css";
 // Footer 
 import Footer from "./footer";
-import ColorTheme from "./setColor";
 /**
  * Theme is the root React component of our theme. The one we will export
  * in roots.
@@ -44,7 +43,7 @@ const Theme = ({ state }) => {
   useEffect(() => {
     setProgress(100);
   }, [data])
-
+  console.log(data.phan_tich);
   // console.log(process.env.REACT_APP_FRONTITY_API_LINK);
   return (
     <>
@@ -81,7 +80,7 @@ const Theme = ({ state }) => {
           <AnalyticsArchive when={state.router.link === '/phan-tich/'} />
           <Dashboard when={state.router.link === '/dashboard/'} />
           <List when={data.isArchive} />
-          <Analytics when={data.isPostType} />
+          <Analytics when={data.isphantich} />
           <Post when={data.isPostType} />
           <PageError when={data.isError} />
         </Switch>

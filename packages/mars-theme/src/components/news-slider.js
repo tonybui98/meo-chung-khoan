@@ -2,7 +2,6 @@ import React, {useState, useEffect} from 'react';
 import { Global, connect, styled } from 'frontity';
 import axios from "axios";
 import ReactHtmlParser from 'react-html-parser';
-import Button from '@mui/material/Button';
 import Carousel from 'react-multi-carousel';
 import carouselStyled from 'react-multi-carousel/lib/styles.css';
 import Link from './link';
@@ -63,7 +62,7 @@ const Slider = () => {
                   <h3>{data.title.rendered}</h3>
                   <p>{ReactHtmlParser(data.excerpt.rendered.slice(0, 180) + "...")}</p>
                   <Link link={slug}>
-                      <Button className="text-white float-right" variant="contained"><i className="bi bi-arrow-right"></i> Xem thêm</Button>
+                      <button className="text-white float-right"><i className="bi bi-arrow-right"></i> Xem thêm</button>
                   </Link>
                </SliderContent>
               </div>

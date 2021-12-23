@@ -2,8 +2,6 @@ import React, {useState, useEffect} from "react";
 import { connect, styled } from "frontity";
 import axios from "axios";
 import LoginImageUrl from "../../images/financial-data.jpg";
-import TextField from "@mui/material/TextField";
-import Button from "@mui/material/Button";
 import validator from 'validator';
 
 
@@ -50,15 +48,15 @@ const Login = () => {
                 <FormStyled onSubmit={(e) => {handleSubmit(e)}}>
                     <h3 className="text-center mb-3 fw-bolder">Đăng nhập</h3>
                     <div className="inputGroup mb-3">
-                        <TextField type="text" id="outlined-basic" className="w-100" label="Tên đăng nhập/ Địa chỉ Email" variant="outlined" value={account} onChange={(el) => setAccount(el.target.value)}/>
+                        <input type="text" id="outlined-basic" className="w-100" label="Tên đăng nhập/ Địa chỉ Email" value={account} onChange={(el) => setAccount(el.target.value)}/>
                     </div>
                     <div className="inputGroup mb-3">
-                        <TextField type="password" id="outlined-basic" className="w-100" label="Nhập mật khẩu" variant="outlined" value={password} onChange={(el) => setPassword(el.target.value)}/>
+                        <input type="password" id="outlined-basic" className="w-100" label="Nhập mật khẩu" value={password} onChange={(el) => setPassword(el.target.value)}/>
                     </div>
-                    <Button type="submit" className="btn btn-primary d-block w-100 text-center py-3" variant="contained">
+                    <button type="submit" className="btn btn-primary d-block w-100 text-center py-3">
                         <i class="bi bi-box-arrow-in-right me-2"></i>
                         Đăng nhập
-                      </Button>
+                      </button>
                 </FormStyled>
                 </div>
               </div>

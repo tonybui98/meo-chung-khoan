@@ -3,8 +3,6 @@ import { connect, styled } from "frontity";
 import Nav from "./nav";
 import MobileMenu from "./menu";
 import Logo from "../images/logo.png"; 
-import Button from '@mui/material/Button';
-import Input from '@mui/material/Input'; 
 import { TickerTape } from "react-ts-tradingview-widgets";
 import Link from "./link";
 import { StickyNav } from "react-js-stickynav";
@@ -42,15 +40,15 @@ const UserSign = () => {
   return(
       <>
         <Link link={userUrl}>
-                <Button variant="contained" color="primary">
+                <button className='btn btn-primary'>
                   <i className="bi bi-box-arrow-in-right me-1"></i> {userDetail.user_nicename ? userDetail.user_nicename : "Đăng nhập"}
-               </Button>
+               </button>
         </Link>
         {
           userDetail.user_nicename ? "":
             <Link link={'/dang-ky/'}>
-              <Button variant="contained" color="success">
-                  <i className="bi bi-person-circle me-1"></i> Đăng ký </Button>
+              <button className='btn btn-outline'>
+                  <i className="bi bi-person-circle me-1"></i> Đăng ký </button>
             </Link>
         }
       </>
@@ -100,9 +98,9 @@ const Header = ({ state }) => {
             <div className="col-12 col-md-4">
                 <div className='d-flex flex-wrap gap-3 justify-content-end align-items-center h-100'>
                     <UserSign />
-                    <Button variant="contained" color="primary">
+                    <button className='btn btn-primary'>
                         <i className="bi bi-search"></i>
-                    </Button>
+                    </button>
                 </div>
             </div>
           </div>
@@ -120,7 +118,7 @@ const Header = ({ state }) => {
 export default connect(Header);
 const Container = styled.div`
 `;
-const InputStyled = styled(Input)`
+const InputStyled = styled.input`
   width: calc(100% - 100px);
 `;
 

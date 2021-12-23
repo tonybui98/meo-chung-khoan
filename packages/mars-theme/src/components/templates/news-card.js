@@ -1,15 +1,13 @@
 import { Global, connect, styled } from 'frontity';
 import ReactHtmlParser from 'react-html-parser';
 import moment from 'moment';
-import Button from '@mui/material/Button';
-import Card from '@mui/material/Card';
 import Link from '../link';
 
 const NewsTemplates = (props) => {
   const hour = moment(props.data.date_gmt).locale('vi').startOf('hour').fromNow();
   return(
     <>
-    <Card className="p-3 mb-3 rounded-0" variant="outlined">
+    <div className="p-3 mb-3 rounded-0 card">
             <div className='d-flex gap-3'>
               <CardImage>
                   <Link link={props.data.link}>
@@ -29,7 +27,7 @@ const NewsTemplates = (props) => {
             <div className="w-100">  
                 <CardExcerpt className="card-text mb-0">{ReactHtmlParser(props.data.excerpt.rendered.slice(0, 80) + "...")}</CardExcerpt>
             </div>
-    </Card>
+    </div>
     </>
   );
 }
