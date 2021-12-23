@@ -17,6 +17,7 @@
   },
   "prettier": {},
   "dependencies": {
+    "@emotion/react": "^11.7.1",
     "@frontity/core": "^1.14.3",
     "@frontity/html2react": "^1.7.0",
     "@frontity/mars-theme": "./packages/mars-theme",
