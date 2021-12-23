@@ -1,9 +1,10 @@
-import { useEffect } from "react";
+import React ,{ useEffect } from "react";
 import { connect, styled } from "frontity";
 import Link from "./link";
 import List from "./list";
 import FeaturedMedia from "./featured-media";
-
+import moment from "moment";
+import Comment from "./comment";
 /**
  * The Post component that Mars uses to render any kind of "post type", like
  * posts, pages, attachments, etc.
@@ -36,6 +37,8 @@ const Post = ({ state, actions, libraries }) => {
   // Get the html2react component.
   const Html2React = libraries.html2react.Component;
 
+  const hour = moment(date).locale('vi').startOf('hour').fromNow();
+
   /**
    * Once the post has loaded in the DOM, prefetch both the
    * home posts and the list component so if the user visits
@@ -46,67 +49,104 @@ const Post = ({ state, actions, libraries }) => {
     List.preload();
   }, [actions.source]);
 
+  console.log(post.acf);
+  const numberWithCommas = (x) => {
+      return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  }
+  const CardPrice = () => {
+    return(<div>
+        <ul className="m-0 p-0">
+            {
+              post.acf.khang_cu.map((data, index) => {
+                return(<li className="d-block" key={index}>
+                  <div class="card p-3 mb-3">
+                          <h5>{data.title}</h5>
+                          <p>
+                           <span class="p-1 rounded bg-success mb-0 me-2"> 
+                              <i class="bi bi-arrow-up-right text-white"></i> 
+                           </span>
+                            Giá trần: {numberWithCommas(data.vung_mua.hightest_price)}
+                          </p>
+                          <p>
+                          <span class="p-1 rounded bg-danger mb-0 me-2"> 
+                            <i class="bi bi-arrow-down-right text-white"></i>
+                          </span>
+                            Giá sàn: {numberWithCommas(data.vung_mua.lowest_price)}
+                            </p>
+                          </div>
+                      </li>);
+              })
+            }
+        </ul>
+      </div>);
+  }
   // Load the post, but only if the data is ready.
   return data.isReady ? (
-    <div className="container">
+    <div className="container py-3">
       <div className="row">
-      <div className="col-12 col-md-8">
-        <Container>
-          <div>
-            <Title dangerouslySetInnerHTML={{ __html: post.title.rendered }} />
+        <div className="col-12 col-md-8">
+          <Container className="bg-white p-3 rounded">
+          <ChartIndex className="w-100" dangerouslySetInnerHTML={{ __html: post.acf.table }} />
+            <div>
+              <Title dangerouslySetInnerHTML={{ __html: post.title.rendered }} />
+              {/* Hide author and date on pages */}
+              {!data.isPage && (
+                <div className="border-bottom pb-3 mb-3">
+                  {author && (
+                    <StyledLink link={author.link}>
+                      <Author>
+                      <i className="bi bi-person"></i> Đăng bởi: <b>{author.name}</b>
+                      </Author>
+                    </StyledLink>
+                  )}
+                  <DateWrapper>
+                    {" "}
+                    <i className="bi bi-calendar"></i> <b>{hour}</b>
+                  </DateWrapper>
+                </div>
+              )}
+            </div>
 
-            {/* Hide author and date on pages */}
-            {!data.isPage && (
-              <div>
-                {author && (
-                  <StyledLink link={author.link}>
-                    <Author>
-                      By <b>{author.name}</b>
-                    </Author>
-                  </StyledLink>
-                )}
-                <DateWrapper>
-                  {" "}
-                  on <b>{date.toDateString()}</b>
-                </DateWrapper>
-              </div>
+            {/* Look at the settings to see if we should include the featured image */}
+            {state.theme.featured.showOnPost && (
+              <FeaturedMedia id={post.featured_media} />
             )}
-          </div>
-
-          {/* Look at the settings to see if we should include the featured image */}
-          {state.theme.featured.showOnPost && (
-            <FeaturedMedia id={post.featured_media} />
-          )}
-
-          {data.isAttachment ? (
-            // If the post is an attachment, just render the description property,
-            // which already contains the thumbnail.
-            <div dangerouslySetInnerHTML={{ __html: post.description.rendered }} />
-          ) : (
-            // Render the content using the Html2React component so the HTML is
-            // processed by the processors we included in the
-            // libraries.html2react.processors array.
-            <Content>
-              <Html2React html={post.content.rendered} />
-            </Content>
-          )}
-        </Container>
+            {data.isAttachment ? (
+              // If the post is an attachment, just render the description property,
+              // which already contains the thumbnail.
+              <div dangerouslySetInnerHTML={{ __html: post.description.rendered }} />
+            ) : (
+              // Render the content using the Html2React component so the HTML is
+              // processed by the processors we included in the
+              // libraries.html2react.processors array.
+              <Content>
+                <Html2React html={post.content.rendered} />
+                <Comment />
+              </Content>
+            )}
+          </Container>
+      </div>
+      <div className="col-12 col-md-4">
+        <div className="p-3 bg-white rounded">
+          <h3>Chỉ số phân tích</h3>
+          <p>Thông số kỹ thuật là tài liệu tham khảo, không phải là lời khuyên đầu tư</p>
+         <CardPrice />
+         </div>
+       </div>
     </div>
-    <div className="col-12 col-md-4">
-
-    </div>
-    </div>
-    </div>
+  </div>
   ) : null;
 };
 
 export default connect(Post);
-
+const ChartIndex = styled.div`
+`;
 const Container = styled.div`
-  padding: 24px;
 `;
 
 const Title = styled.h1`
+  font-size: 2rem;
+  font-weight: bold;
   margin: 0;
   margin-top: 24px;
   margin-bottom: 8px;

@@ -7,32 +7,14 @@ import Button from '@mui/material/Button';
 import Input from '@mui/material/Input'; 
 import { TickerTape } from "react-ts-tradingview-widgets";
 import Link from "./link";
-
-const LoginRegister = () => {
-
-  return(
-    <div className='d-flex flex-wrap gap-3 justify-content-end align-items-center h-100'>
-
-        <Link link={'/dang-nhap/'}>
-          <Button variant="contained" color="primary">
-            <i className="bi bi-box-arrow-in-right me-1"></i> Đăng nhập
-          </Button>
-        </Link>
-        <Link link={'/dang-ky/'}>
-            <Button variant="contained" color="success">
-              <i className="bi bi-person-circle me-1"></i> Đăng ký </Button>
-        </Link>
-      </div>
-  );
-}
+import { StickyNav } from "react-js-stickynav";
 
 const Header = ({ state }) => {
   const [searchVal , setSearchValue] = useState('');
 
   return (
-    <>
-      <Container className="container py-2">
-        <div className={'row align-items-center w-100'}>
+    <div className="w-100">
+        <div className={'row align-items-center w-100 d-none'}>
           <div className={'col-md-6 col-12'}>
               <StyledLink className="py-1" link="/">
                 <div className={'d-flex align-items-center gap-3'}>
@@ -49,22 +31,38 @@ const Header = ({ state }) => {
             <div className="col-md-6 col-12">
               <div className="input-group rounded position-relative d-flex justify-content-end">
                 <InputStyled type="text" value={searchVal} onChange={() => setSearchValue(this.target.value)} className="py-1 px-2 rounded bg-light" placeholder="Tìm kiếm..." />
-                <Button variant="contained" color="primary">
-                    <i className="bi bi-search"></i>
-                </Button>
+
               </div>
             </div>
         </div>
-        <MobileMenu />
-      </Container>
+      <MobileMenu />
+      <StickyNav className="w-100" length='40'>
       <Navigation>
         <Container className="container">
           <div className="row">
            <div className="col-12 col-md-8">
-              <Nav className="w-100"/>
+              <div className='d-flex align-items-center'>
+                <StyledLink className="py-1" link="/">
+                  <ImageBrand src={Logo} alt={'Mẹo chứng khoán'} /> 
+                </StyledLink>
+                <Nav/>
+              </div>
             </div>
             <div className="col-12 col-md-4">
-              <LoginRegister />
+                <div className='d-flex flex-wrap gap-3 justify-content-end align-items-center h-100'>
+                    <Link link={'/dang-nhap/'}>
+                      <Button variant="contained" color="primary">
+                        <i className="bi bi-box-arrow-in-right me-1"></i> Đăng nhập
+                      </Button>
+                    </Link>
+                    <Link link={'/dang-ky/'}>
+                        <Button variant="contained" color="success">
+                          <i className="bi bi-person-circle me-1"></i> Đăng ký </Button>
+                    </Link>
+                    <Button variant="contained" color="primary">
+                        <i className="bi bi-search"></i>
+                    </Button>
+                </div>
             </div>
           </div>
         </Container>
@@ -72,7 +70,8 @@ const Header = ({ state }) => {
       <div className="col-12">
              <TickerTape colorTheme="light" locale="vi"></TickerTape>
       </div>
-    </>
+      </StickyNav>
+    </div>
   );
 };
 
@@ -89,7 +88,7 @@ const Navigation = styled.div`
   width: 100%;
 `;
 const ImageBrand = styled.img`
-  width: 80px;
+  width: 50px;
   height: auto;
 `;
 

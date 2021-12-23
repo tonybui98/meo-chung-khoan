@@ -75,7 +75,7 @@ const MenuLink = styled(Link)`
   display: block;
   &:hover,
   &[aria-current="page"] {
-    background: #2ed573;
+    color: #2ed573 !important;
   }
 `;
 

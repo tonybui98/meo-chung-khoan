@@ -6,7 +6,6 @@ import Button from '@mui/material/Button';
 
 import Carousel from 'react-multi-carousel';
 import carouselStyled from 'react-multi-carousel/lib/styles.css';
-import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 const responsive = {
   superLargeDesktop: {
@@ -40,8 +39,6 @@ const Slider = () => {
   }
 
   useEffect(() => FetchPost() , []);
-
-  console.log(sliderContent);
   return (
     <>
       <Global styles={carouselStyled} />
@@ -51,7 +48,7 @@ const Slider = () => {
             return(
               <div className="position-relative" key={data.id}>
                 <SliderThumbnail className="position-relative overflow-hidden border-radius-lg">
-                  <LazyLoadImage className={"position-absolute top-0 start-0 w-100"}
+                  <SliderImage className={"position-absolute top-0 start-0 w-100"}
                       alt={data.title.rendered}
                       height={'100%'}
                       src={data.featured_image_src} // use normal <img> attributes as props

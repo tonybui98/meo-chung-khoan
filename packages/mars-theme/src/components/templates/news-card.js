@@ -6,7 +6,6 @@ import Card from '@mui/material/Card';
 import Link from '../link';
 
 const NewsTemplates = (props) => {
-  console.log(props);
   const hour = moment(props.data.date_gmt).locale('vi').startOf('hour').fromNow();
   return(
     <>
@@ -18,7 +17,8 @@ const NewsTemplates = (props) => {
                   </Link>
               </CardImage>
               <CardContent>
-                <NewMeta className="text-sm text-mute float-right"><i class="bi bi-calendar"></i> {hour}</NewMeta>
+                <NewMeta className="text-sm text-mute float-right me-2"><i className="bi bi-person"></i> Bởi: {props.data.author_meta.name}</NewMeta>
+                <NewMeta className="text-sm text-mute float-right"><i className="bi bi-calendar"></i> {hour}</NewMeta>
                 <CardHeading className="card-title">
                   <Link link={props.data.link}>
                     {props.data.title.rendered}
@@ -36,12 +36,11 @@ const NewsTemplates = (props) => {
 
 export default connect(NewsTemplates);
 const NewMeta = styled.span`
-  font-size: 8px;
-  background: #131722;
-  color: white;
-  padding: 4px 10px;
+  font-size: 9px;
+  color: #4e4e4e;
   display: inline-block;
-  border-radius: 5px;
+  font-weight: bold;
+  text-transform: uppercase;
 `
 
 const CardExcerpt = styled.div`

@@ -1,5 +1,3 @@
-// import { config } from "dotenv";
-
 const settings = {
   "name": "meochungkhoan",
   "state": {
@@ -7,7 +5,7 @@ const settings = {
       "url": "https://meochungkhoan.com",
       "title": "Mẹo chứng khoán",
       "description": "Kênh thông tin hướng dẫn về chứng khoán nhanh nhất"
-    }
+    },
   },
   "packages": [
     {
@@ -21,56 +19,60 @@ const settings = {
             },
             {
               name:"Tin tức",
-              href:"/category/nature/",
+              href:"/tin-tuc/",
               submenu: [
                 {
-                  name: 'Vietnam',
-                  href: '/tag/vietnam/'
+                  name: 'Doanh nghiệp',
+                  href: '/tin-tuc/doanh-nghiep/'
                 },
                 {
-                  name: 'Japan',
-                  href: '/tag/japan/'
+                  name: 'Bất động sản',
+                  href: '/tin-tuc/bat-dong-san/'
                 },
                 {
-                  name: 'Iceland',
-                  href: '/tag/iceland/'
+                  name: 'Dự thảo',
+                  href: '/tin-tuc/du-thao/'
+                },
+                {
+                  name: 'Hàng hóa',
+                  href: '/tin-tuc/hang-hoa/'
                 }
               ]
             },
             {
               name:"Đồ thị",
-              href:"/category/travel/"
+              href:"/do-thi/"
             },
             {
               name:"PTKT",
-              href:"/tag/japan/",
+              href:"/phan-tich-ky-thuat/",
               submenu: [
                 {
                   name: 'Hướng dẫn',
-                  href: '/tag/vietnam/'
+                  href: '/phan-tich-ky-thuat/huong-dan/'
                 },
                 {
                   name: 'Các định nghĩa',
-                  href: '/tag/japan/'
+                  href: '/phan-tich-ky-thuat/dinh-nghia'
                 },
                 {
                   name: 'Mô hình',
-                  href: '/tag/iceland/'
+                  href: '/phan-tich-ky-thuat/mo-hinh/'
                 }
               ]
             },
             {
               name:"Dành cho người mới",
-              href:"/about-us/"
+              href:"/danh-cho-nguoi-moi/"
             },
            {
             name:"Tạo tài khoản",
-            href:"/about-us/"
+            href:"/tao-tai-khoan/"
            }
           ],
           "featured": {
             "showOnList": false,
-            "showOnPost": false
+            "showOnPost": true
           }
         }
       }
@@ -79,7 +81,14 @@ const settings = {
       "name": "@frontity/wp-source",
       "state": {
         "source": {
-          "url": "https://meochungkhoan.com/dashboard"
+          "url": "https://meochungkhoan.com/dashboard",
+          "postTypes": [
+            {
+              type: "phan-tich",
+              endpoint: "phan_tich",
+              archive: "/phan-tich"
+            }
+          ]
         }
       }
     },

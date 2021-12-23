@@ -7,7 +7,7 @@ const scale = keyframes`
 `;
 
 const Loading = () => (
-  <Container className="loading">
+  <Container className="loading m-auto">
     <div>
       <div css={bar(1)} />
       <div css={bar(2)} />

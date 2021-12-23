@@ -15,8 +15,6 @@ const NewsList = () => {
     }
   
     useEffect(() => FetchPost() , []);
-
-    console.log(postData);
    
     return(
       <>

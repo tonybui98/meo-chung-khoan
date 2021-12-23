@@ -8,10 +8,11 @@ import Switch from "@frontity/components/switch";
 import Header from "./header";
 import List from "./list";
 import Post from "./post";
+import Analytics from "./analytics";
 import Loading from "./loading";
 import Title from "./title";
 import PageError from "./page-error";
-
+import AnalyticsArchive from "./pages/phan-tich";
 
 // Import Các trang cần thiết
 import Home from "./pages/home";
@@ -21,7 +22,6 @@ import Login from "./pages/login";
 import LoadingBar from 'react-top-loading-bar'
 import globalCss from "./index.css";
 import bootstrapStyle from "bootstrap/dist/css/bootstrap.min.css";
-
 // Footer 
 import Footer from "./footer";
 
@@ -34,7 +34,6 @@ import Footer from "./footer";
  * @returns The top-level react component representing the theme.
  */
 const Theme = ({ state }) => {
-  console.log(state);
   const [progress, setProgress] = useState(0);
 
   // Get information about the current URL.
@@ -66,9 +65,8 @@ const Theme = ({ state }) => {
         when={() => {setProgress(100); console.log('loading')}}
         onLoaderFinished={() => setProgress(0)}
       />
-
       <HeadContainer>
-        <Header />
+           <Header />
       </HeadContainer>
 
       {/* Add the main section. It renders a different component depending
@@ -78,7 +76,9 @@ const Theme = ({ state }) => {
           <Loading when={data.isFetching} />
           <Home when={state.router.link === '/'} />
           <Login when={state.router.link === '/dang-nhap/'} />
+          <AnalyticsArchive when={state.router.link === '/phan-tich/'} />
           <List when={data.isArchive} />
+          <Analytics when={data.isPostType} />
           <Post when={data.isPostType} />
           <PageError when={data.isError} />
         </Switch>

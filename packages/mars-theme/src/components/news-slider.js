@@ -6,6 +6,7 @@ import Button from '@mui/material/Button';
 import Carousel from 'react-multi-carousel';
 import carouselStyled from 'react-multi-carousel/lib/styles.css';
 import Link from './link';
+import moment from 'moment';
 
 const responsive = {
   superLargeDesktop: {
@@ -39,21 +40,26 @@ const Slider = () => {
   }
 
   useEffect(() => FetchPost() , []);
-
-  console.log(sliderContent);
+  
   return (
     <>
       <Global styles={carouselStyled} />
-      <Carousel responsive={responsive}>
+      <Carousel 
+          containerClass="sliderGap"
+          responsive={responsive}
+          itemClass="carousel-item-padding-40-px"
+      >
         {
           sliderContent.map((data) => {
             const slug = data.link;
+            const hour = moment(data.date_gmt).locale('vi').startOf('hour').fromNow();
             return( 
               <div className="position-relative" key={data.id}>
                 <SliderThumbnail className="position-relative overflow-hidden border-radius-lg">
                   <SliderImage className={"position-absolute top-0 start-0 w-100"} src={data.featured_image_src} />
                 </SliderThumbnail>
                <SliderContent>
+                  <NewMeta className="text-sm text-mute float-right"><i class="bi bi-calendar"></i> {hour}</NewMeta>
                   <h3>{data.title.rendered}</h3>
                   <p>{ReactHtmlParser(data.excerpt.rendered.slice(0, 180) + "...")}</p>
                   <Link link={slug}>
@@ -69,6 +75,13 @@ const Slider = () => {
   );
 }
 export default connect(Slider);
+const NewMeta = styled.span`
+  font-size: 9px;
+  color: #4e4e4e;
+  display: inline-block;
+  font-weight: bold;
+  text-transform: uppercase;
+`
 const SliderContent = styled.div`
     padding: 20px;
     text-align: left;

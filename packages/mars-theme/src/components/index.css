@@ -1,9 +1,15 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;700&display=swap');
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css");
+
+:root {
+  --default-font-family: 'Ubuntu', sans-serif;
+  --default-font-size: 16px;
+}
+
 body {
   margin: 0;
-  font-family: 'Roboto', sans-serif; !important;
-  font-size: 14px;
+  font-family: var(--default-font-family) !important;
+  font-size: var(--default-font-size);
 }
 .container, .container-lg, .container-md, .container-sm, .container-xl, .container-xxl {
   max-width: 1180px !important;
@@ -11,7 +17,7 @@ body {
 a,
 a:visited {
   color: inherit;
-  text-decoration: none;
+  text-decoration: none !important;
 }
 
 .react-multiple-carousel__arrow--left::before {
@@ -24,4 +30,21 @@ a:visited {
 
 .react-multiple-carousel__arrow::before {
   font-family: bootstrap-icons !important;
+}
+.scrollNav {
+  transition: all 0.5s ease-in;
+  z-index: 2000;
+  background: #ffffff;
+  width: 100%;
+  border-bottom: 1px solid #dddddd;
+}
+.styl {
+  padding-top: 80px;
+}
+.scrollNav {
+  position: fixed;
+  top: 0;
+  z-index: 99999;
+  width: 100%;
+  box-shadow: 0px 0px 25px -15px;
 }
