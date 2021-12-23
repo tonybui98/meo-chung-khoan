@@ -1,5 +1,4 @@
-import React, {useState, useEffect} from "react";
-import {styled, connect} from "frontity";
+import {connect} from "frontity";
 
 const Dashboard = () => {
 

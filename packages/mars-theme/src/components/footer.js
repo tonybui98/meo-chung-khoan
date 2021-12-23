@@ -1,5 +1,5 @@
-import React, {useState, useEffect} from "react";
-import { Global ,connect , styled } from "frontity";
+import{useState, useEffect} from "react";
+import { connect , styled } from "frontity";
 import Link from "./link";
 import axios from "axios";
 

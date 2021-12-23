@@ -1,4 +1,4 @@
-import React, {useState , useEffect} from 'react';
+import {useState , useEffect} from 'react';
 import { connect, styled } from "frontity";
 import Nav from "./nav";
 import MobileMenu from "./menu";

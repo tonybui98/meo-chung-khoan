@@ -1,6 +1,4 @@
-import { connect, styled, decode } from "frontity";
-import Item from "../List/list-item";
-import Pagination from "../List/pagination";
+import { connect, styled } from "frontity";
 
 const List = ({ state }) => {
   // Get the data of the current list.

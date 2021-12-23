@@ -1,4 +1,4 @@
-import React , {useRef, useState, useEffect} from "react";
+import {useState, useEffect} from "react";
 
 // Import Frontity
 import { Global, css, connect, styled, Head } from "frontity";

@@ -1,4 +1,4 @@
-import { Global, connect, styled } from 'frontity';
+import { connect, styled } from 'frontity';
 import ReactHtmlParser from 'react-html-parser';
 import moment from 'moment';
 import Link from '../link';

@@ -1,5 +1,5 @@
-import React, {useState, useEffect} from 'react'
-import { Global, connect, styled } from 'frontity';
+import {useState, useEffect} from 'react'
+import { connect } from 'frontity';
 import NewsTemplates from "./templates/news-card"
 import axios from "axios";
 
