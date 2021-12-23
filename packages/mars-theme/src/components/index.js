@@ -17,6 +17,7 @@ import AnalyticsArchive from "./pages/phan-tich";
 // Import Các trang cần thiết
 import Home from "./pages/home";
 import Login from "./pages/login";
+import Dashboard from "./pages/dashboard";
 
 // Loading Bar
 import LoadingBar from 'react-top-loading-bar'
@@ -24,7 +25,7 @@ import globalCss from "./index.css";
 import bootstrapStyle from "bootstrap/dist/css/bootstrap.min.css";
 // Footer 
 import Footer from "./footer";
-
+import ColorTheme from "./setColor";
 /**
  * Theme is the root React component of our theme. The one we will export
  * in roots.
@@ -33,6 +34,7 @@ import Footer from "./footer";
  *
  * @returns The top-level react component representing the theme.
  */
+
 const Theme = ({ state }) => {
   const [progress, setProgress] = useState(0);
 
@@ -77,6 +79,7 @@ const Theme = ({ state }) => {
           <Home when={state.router.link === '/'} />
           <Login when={state.router.link === '/dang-nhap/'} />
           <AnalyticsArchive when={state.router.link === '/phan-tich/'} />
+          <Dashboard when={state.router.link === '/dashboard/'} />
           <List when={data.isArchive} />
           <Analytics when={data.isPostType} />
           <Post when={data.isPostType} />

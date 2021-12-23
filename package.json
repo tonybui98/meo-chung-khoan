@@ -23,17 +23,20 @@
     "@frontity/tiny-router": "^1.4.4",
     "@frontity/wp-source": "^1.11.7",
     "@mui/material": "^5.2.4",
+    "apexcharts": "^3.32.0",
     "axios": "^0.24.0",
     "bootstrap": "^5.1.3",
     "firebase": "^9.6.1",
     "frontity": "^1.17.1",
     "moment": "^2.29.1",
+    "react-apexcharts": "^1.3.9",
     "react-html-parser": "^2.0.2",
     "react-js-stickynav": "^1.0.2",
     "react-multi-carousel": "^2.6.5",
     "react-sticky": "^6.0.3",
     "react-telegram-comments": "^1.1.0",
     "react-top-loading-bar": "^2.1.0",
-    "react-ts-tradingview-widgets": "^1.0.8"
+    "react-ts-tradingview-widgets": "^1.0.8",
+    "validator": "^13.7.0"
   }
 }

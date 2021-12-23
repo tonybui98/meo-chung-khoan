@@ -9,7 +9,56 @@ import { TickerTape } from "react-ts-tradingview-widgets";
 import Link from "./link";
 import { StickyNav } from "react-js-stickynav";
 
+const UserSign = () => { 
+
+  const [userDetail, setUserDetail] = useState({
+    token: "",
+    user_email: "",
+    user_nicename: "",
+    user_display_name: "",
+  });
+
+  const [userUrl, setUserUrl] = useState('');
+
+  useEffect(() => {
+    const dataUser = JSON.parse(sessionStorage.getItem('user'));
+    console.log(dataUser);
+    const Url = "";
+    if(dataUser != null){
+        console.log("Token : " ,  dataUser.token);
+        const objectUser = {
+          token: dataUser.token,
+          user_email: dataUser.user_email,
+          user_nicename: dataUser.user_nicename,
+          user_display_name: dataUser.user_display_name,
+        }
+        setUserDetail(objectUser);
+        setUserUrl('dashboard');
+    } else {
+      setUserUrl('dang-nhap');
+    }
+  }, []);
+
+  return(
+      <>
+        <Link link={userUrl}>
+                <Button variant="contained" color="primary">
+                  <i className="bi bi-box-arrow-in-right me-1"></i> {userDetail.user_nicename ? userDetail.user_nicename : "Đăng nhập"}
+               </Button>
+        </Link>
+        {
+          userDetail.user_nicename ? "":
+            <Link link={'/dang-ky/'}>
+              <Button variant="contained" color="success">
+                  <i className="bi bi-person-circle me-1"></i> Đăng ký </Button>
+            </Link>
+        }
+      </>
+  );
+}
+
 const Header = ({ state }) => {
+
   const [searchVal , setSearchValue] = useState('');
 
   return (
@@ -50,15 +99,7 @@ const Header = ({ state }) => {
             </div>
             <div className="col-12 col-md-4">
                 <div className='d-flex flex-wrap gap-3 justify-content-end align-items-center h-100'>
-                    <Link link={'/dang-nhap/'}>
-                      <Button variant="contained" color="primary">
-                        <i className="bi bi-box-arrow-in-right me-1"></i> Đăng nhập
-                      </Button>
-                    </Link>
-                    <Link link={'/dang-ky/'}>
-                        <Button variant="contained" color="success">
-                          <i className="bi bi-person-circle me-1"></i> Đăng ký </Button>
-                    </Link>
+                    <UserSign />
                     <Button variant="contained" color="primary">
                         <i className="bi bi-search"></i>
                     </Button>

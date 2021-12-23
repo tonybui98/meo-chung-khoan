@@ -45,7 +45,7 @@ const Footer = () => {
                       <ul className="p-0 m-0">{
                           widget_2.navigation.map((data ,  index) =>{
                             return(
-                              <li className="d-block">
+                              <li key={index} className="d-block">
                                 <Link link={"/" + data.page.post_name} key={index}>{data.title}</Link>
                               </li>
                               );
@@ -59,7 +59,7 @@ const Footer = () => {
                       <ul className="p-0 m-0">{
                           widget_3.navigation.map((data ,  index) =>{
                             return(
-                              <li className="d-block">
+                              <li key={index} className="d-block">
                                 <Link link={"/" + data.page.post_name} key={index}>{data.title}</Link>
                               </li>
                               );

@@ -1,12 +1,16 @@
 import React, {useState, useEffect} from "react";
-import { connect } from "frontity";
+import { connect, styled } from "frontity";
 import axios from "axios";
+import LoginImageUrl from "../../images/financial-data.jpg";
+import TextField from "@mui/material/TextField";
+import Button from "@mui/material/Button";
+import validator from 'validator';
+
 
 const Login = () => {
-
+  
   const[account, setAccount] = useState('');
   const[password, setPassword] = useState('');
-  const[token, setToken] = useState('');
   
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -25,26 +29,39 @@ const Login = () => {
 
     axios(config)
     .then(function (response) {
-      console.log(JSON.stringify(response.data));
+      sessionStorage.setItem('user', JSON.stringify(response.data));
     }) 
 
-  }
+  };
+
+  useEffect(() => {
+      console.log(validator.isEmail(account))
+    }, [account])
 
     return( 
         <>
-          <div className="container">
-            <div className="d-flex flex-wrap align-items-center">
-                <form onSubmit={(e) => {handleSubmit(e)}}>
-                    <div className="inputGroup">
-                        <label for={'Login'}>Tên đăng nhập</label>
-                        <input className="form-control" value={account} onChange={(el) => setAccount(el.target.value)}/>
+          <div className="container py-4">
+            <div className="bg-white rounded p-3">
+            <div className="row align-items-center">
+              <div className="col-12 col-md-6 h-100 d-md-block d-none">
+                <img className="rounded w-100" src={LoginImageUrl} />
+              </div>
+              <div className="col-12 col-md-6 h-100">
+                <FormStyled onSubmit={(e) => {handleSubmit(e)}}>
+                    <h3 className="text-center mb-3 fw-bolder">Đăng nhập</h3>
+                    <div className="inputGroup mb-3">
+                        <TextField type="text" id="outlined-basic" className="w-100" label="Tên đăng nhập/ Địa chỉ Email" variant="outlined" value={account} onChange={(el) => setAccount(el.target.value)}/>
                     </div>
-                    <div className="inputGroup">
-                        <label for={'Login'}>Mật khẩu</label>
-                        <input className="form-control" value={password} onChange={(el) => setPassword(el.target.value)}/>
+                    <div className="inputGroup mb-3">
+                        <TextField type="password" id="outlined-basic" className="w-100" label="Nhập mật khẩu" variant="outlined" value={password} onChange={(el) => setPassword(el.target.value)}/>
                     </div>
-                    <button type="submit" className="btn btn-primary">Đăng nhập</button>
-                </form>
+                    <Button type="submit" className="btn btn-primary d-block w-100 text-center py-3" variant="contained">
+                        <i class="bi bi-box-arrow-in-right me-2"></i>
+                        Đăng nhập
+                      </Button>
+                </FormStyled>
+                </div>
+              </div>
               </div>
           </div>
         </>
@@ -52,3 +69,8 @@ const Login = () => {
 }
 
 export default connect(Login);
+
+const FormStyled = styled.form`
+  max-width: 380px;
+  margin: auto;
+`;
